@@ -1,0 +1,40 @@
+(kicad_pcb (version 20240108) (generator pcbnew)
+
+  ;; General Setup: Central Input Signal Buffer System
+  (general
+    (thickness 1.6)
+  )
+
+  ;; Design Layers
+  (layers
+    (0 F.Cu signal)
+    (31 B.Cu signal)
+    (34 Edge.Cuts user)
+  )
+
+  ;; Component Footprints: Two Flip-Flop Latches (U1 and U2)
+  (footprint "Package_DIP:DIP-14_W7.62mm" (at 0 -10)
+    (descr "Dual Latch Buffer Latch 1 - Left Flip Flop")
+    (fp_text reference "U1" (at 0 -3))
+  )
+  
+  (footprint "Package_DIP:DIP-14_W7.62mm" (at 0 10)
+    (descr "Dual Latch Buffer Latch 2 - Right Flip Flop Face-to-Face")
+    (fp_text reference "U2" (at 0 3))
+  )
+
+  ;; Net Connections representing the split assembly
+  (net 0 "")
+  (net 1 "VCC")
+  (net 2 "GND")
+  (net 3 "CENTER_INPUT_SIGNAL")
+  (net 4 "LEFT_LATCH_FEEDBACK")
+  (net 5 "RIGHT_LATCH_FEEDBACK")
+
+  ;; Tracks modeling the physical aluminum wire contact loops
+  (segment (start -15 0) (end 0 -5) (width 0.5) (layer "F.Cu") (net 3)) ;; Input to Left Side
+  (segment (start 15 0) (end 0 5) (width 0.5) (layer "F.Cu") (net 3))  ;; Input to Right Side
+  
+  ;; The physical structural break line where the pipe halves separate
+  (gr_line (start -30 0) (end 30 0) (layer "Edge.Cuts") (width 0.1))
+)
