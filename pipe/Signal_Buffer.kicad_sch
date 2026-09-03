@@ -1,0 +1,69 @@
+(kicad_sch (version 20230510) (generator eeschema)
+
+  (uuid "a7b3c1d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d")
+
+  (paper "A4")
+
+  ;; Global Labels for the central interface split
+  (global_label "CENTER_INPUT" (shape input) (at 70 50 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)))
+    (uuid "b1c2d3e4-f5a6-7b8c-9d0e-1f2a3b4c5d6e")
+  )
+
+  ;; Component: 3-Pin Central Header for Interfacing Split Pipe Contacts
+  (symbol "Connector:Conn_01x03_Pin" (at 50 50 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "c1d2e3f4-a5b6-7c8d-9e0f-1a2b3c4d5e6f")
+    (property "Reference" "J1" (at 50 43 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "Center_Input_Terminal" (at 50 45 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (pin "1" (uuid "d1e2f3a4-b5c6-7d8e-9f0a-1b2c3d4e5f6a"))
+    (pin "2" (uuid "e2f3a4b5-c6d7-8e9f-0a1b-2c3d4e5f6a7b"))
+    (pin "3" (uuid "f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c"))
+  )
+
+  ;; Component: Cross-Coupled NAND Gate A (Left Latch)
+  (symbol "74xx:74HC00" (at 100 40 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d")
+    (property "Reference" "U1" (at 100 32 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "74HC00" (at 100 34 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (pin "1" (uuid "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d"))
+    (pin "2" (uuid "2a3b4c5d-6e7f-8a9b-0c1d-2e3f4a5b6c7d"))
+    (pin "3" (uuid "3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d"))
+  )
+
+  ;; Component: Cross-Coupled NAND Gate B (Right Latch)
+  (symbol "74xx:74HC00" (at 100 70 0) (unit 2)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e")
+    (property "Reference" "U1" (at 100 62 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "74HC00" (at 100 64 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (pin "4" (uuid "4a5b6c7d-8e9f-0a1b-2c3d-4e5f6a7b8c9d"))
+    (pin "5" (uuid "5a6b7c8d-9e0f-1a2b-3c4d-5e6f7a8b9c0d"))
+    (pin "6" (uuid "6a7b8c9d-0e1f-2a3b-4c5d-6e7f8a9b0c1d"))
+  )
+
+  ;; Wire Connections forming the Flip-Flop loop feedback paths
+  (wire ( its (start 53 49) (end 90 39)) (uuid "e1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c")) ;; J1 Pin 1 to U1 Pin 1
+  (wire ( its (start 53 51) (end 90 69)) (uuid "f2b3c4d5-e6f7-8a9b-0c1d-2e3f4a5b6c7d")) ;; J1 Pin 2 to U1 Pin 4
+  (wire ( its (start 108 40) (end 120 40)) (uuid "a3b4c5d6-e7f8-9a0b-1c2d-3e4f5a6b7c8d")) ;; U1 Out 3 (Q)
+  (wire ( its (start 108 70) (end 120 70)) (uuid "b4c5d6e7-f8a9-0b1c-2d3e-4f5a6b7c8d9e")) ;; U1 Out 6 (Q_Bar)
+
+  ;; Cross-coupling feedback links
+  (wire ( its (start 120 40) (end 120 55)) (uuid "c5d6e7f8-a9b0-1c2d-3e4f-5a6b7c8d9e0f"))
+  (wire ( its (start 120 55) (end 90 71)) (uuid "d6e7f8a9-b0c1-2d3e-4f5a-6b7c8d9e0f1a")) ;; Q to Input 5
+  (wire ( its (start 120 70) (end 120 58)) (uuid "e7f8a9b0-c1d2-3e4f-5a6b-7c8d9e0f1a2b"))
+  (wire ( its (start 120 58) (end 90 41)) (uuid "f8a9b0c1-d2e3-4f5a-6b7c-8d9e0f1a2b3c")) ;; Q_Bar to Input 2
+)
